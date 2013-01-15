@@ -1,0 +1,13 @@
+Aihe: Pong -peli
+
+K‰ytt‰j‰t: 1-2 Pelaajaa
+
+
+Toteutetaan reaaliaikainen Pong -peli.
+Ohjelma mahdollistaa:
+1) Yksinpelin itsens‰ kanssa - pelaaja kontrolloi molempia alustoja samanaikaisesti.
+   Peli laskee "pompautusten" m‰‰r‰n, ja pallon liike nopeutuu koko ajan.
+   Lopussa tulos tallennetaan High Scoreihin.
+2) Kaksinpeli - kaksi k‰ytt‰j‰‰ pelaavat toisiaan vastaan esim. 10 palloa. (Pallon nopeuden s‰‰tˆ?)
+3) High Scorejen tarkastelu - k‰ytt‰j‰ tarkastelee edellisi‰ High Scoreja
+[5)] Jos aikaa ja osaamista riitt‰‰ lis‰t‰‰n vaihtoehto tietokonetta vastaan pelaamiseen.
