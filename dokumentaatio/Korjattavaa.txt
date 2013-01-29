@@ -1,0 +1,7 @@
+- laita paddle siirto suoraan looppiin.
+ keylistener määrää vauhdin
+- kun siirrät padlea siirrä yksipikseli kerrallaan
+fore loopilla. (esim siirry 2 -> fore every 2 move 1)
+- siisti paddlen siirtoa siten että
+ kahden napin painallus samaan aikaan ei pysäytä
+paddlea
