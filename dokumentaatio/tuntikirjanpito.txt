@@ -1,3 +1,6 @@
 - 15.1.2013 [3,5 h] 1. Deadlinen tekemiseen: GitHubin käytön opettelu ja tehtävien teko.
-
-(Kokonaismäärä: 3,5 h)
+- 22.1.2013 [4,0 h] Vanhojen tehtävien tekeminen kertausmielessä 
+- 25.1.2013 [2,0 h] Uusien luokkien luonti ja perusgrafiikan sekä käyttöliittymän alustus
+- 28.1.2013 [2,0 h] Luokkien jalostaminen ja testien kirjoittelu
+- 29.1.2013 [4,0h] Toiminnallisuuden lisääminen
+(Kokonaismäärä: 15,5 h)
