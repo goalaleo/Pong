@@ -22,9 +22,17 @@ public class Pelaaja {
     public int getY() {
         return paikkaY;
     }
-
-    public int getNopeus() {
+    
+    public int getNopeus(){
         return nopeus;
+    }
+
+    public void setPaikkaX(int uusiPaikkaX) {
+        this.paikkaX = uusiPaikkaX;
+    }
+
+    public void setPaikkaY(int uusiPaikkaY) {
+        this.paikkaY = uusiPaikkaY;
     }
 
     public void setNopeus(int nopeus) {
@@ -41,6 +49,6 @@ public class Pelaaja {
 
     public void piirra(Graphics graphics) {
         graphics.setColor(Color.WHITE);
-        graphics.fillRect(paikkaX, paikkaY, 32, 128);
+        graphics.fillRect(paikkaX, paikkaY, 10, 128);
     }
 }

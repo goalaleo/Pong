@@ -10,11 +10,25 @@ public class Pallo {
     private int nopeusX;
     private int nopeusY;
 
-    public Pallo(int paikkaX, int paikkaY, int nopeusX, int nopeusY) {
+    public Pallo(int paikkaX, int paikkaY, int nopeus) {
         this.paikkaX = paikkaX;
         this.paikkaY = paikkaY;
-        this.nopeusX = nopeusX;
-        this.nopeusY = nopeusY;
+        this.nopeusX = nopeus;
+        this.nopeusY = nopeus;
+    }
+
+    public void siirry() {
+        if (nopeusY < 0) {
+            paikkaY -= 1;
+        } else if (nopeusY > 0) {
+            paikkaY += 1;
+        }
+        if (nopeusX < 0) {
+            paikkaX -= 1;
+        }
+        if (nopeusX > 0) {
+            paikkaX += 1;
+        }
     }
 
     public int getX() {
@@ -29,12 +43,12 @@ public class Pallo {
         return nopeusX;
     }
 
-    public void setNopeusX(int uusiNopeusX) {
-        nopeusX = uusiNopeusX;
-    }
-
     public int getNopeusY() {
         return nopeusY;
+    }
+
+    public void setNopeusX(int uusiNopeusX) {
+        nopeusX = uusiNopeusX;
     }
 
     public void setNopeusY(int uusiNopeusY) {
@@ -46,12 +60,11 @@ public class Pallo {
         graphics.fillOval(paikkaX, paikkaY, 20, 20);
     }
 
-    public void setX(int paikkaX){
+    public void setX(int paikkaX) {
         this.paikkaX = paikkaX;
     }
-    
-    public void setY(int paikkaY){
+
+    public void setY(int paikkaY) {
         this.paikkaY = paikkaY;
     }
-    
 }

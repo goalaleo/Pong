@@ -4,18 +4,16 @@ import Grafiikka.Kayttoliittyma;
 import domain.Pallo;
 import domain.Pelaaja;
 import javax.swing.SwingUtilities;
-
+/**
+ *Main-luokka, joka ajettaessa luo Kayttoliittyman
+ * ja ajaa sen
+ */
 public class Main {
 
+    /**
+     *Luo ja ajaa Kayttoliittyman 
+     */
     public static void main(String[] args) {
-        Pelaaja pelaaja1 = new Pelaaja(20, 165);
-        Pelaaja pelaaja2 = new Pelaaja(580, 165);
-        int PallonNopeusX = 3;
-        int PallonNopeusY = -5;
-        Pallo pallo = new Pallo(60, 140, PallonNopeusX, PallonNopeusY);
-
-
-        SwingUtilities.invokeLater(new Kayttoliittyma(pallo, pelaaja1, pelaaja2));
-        // TODO code application logic here
+        SwingUtilities.invokeLater(new Kayttoliittyma());
     }
 }
