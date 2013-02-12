@@ -9,5 +9,5 @@ Ohjelma mahdollistaa:
    Peli laskee "pompautusten" m‰‰r‰n, ja pallon liike nopeutuu koko ajan.
    Lopussa tulos tallennetaan High Scoreihin.
 2) Kaksinpeli - kaksi k‰ytt‰j‰‰ pelaavat toisiaan vastaan esim. 10 palloa. (Pallon nopeuden s‰‰tˆ?)
-3) High Scorejen tarkastelu - k‰ytt‰j‰ tarkastelee edellisi‰ High Scoreja
-[5)] Jos aikaa ja osaamista riitt‰‰ lis‰t‰‰n vaihtoehto tietokonetta vastaan pelaamiseen.
+3) High Scorejen tarkastelu - k‰ytt‰j‰ tarkastelee edellisi‰ High Scoreja. High Scoret ovat mahdollistettu ainakin yksinpelille. Kaksinpelille mahdollisesti oma lista jos voittaa vastustajan ns. 10-0
+[4)] Jos aikaa ja osaamista riitt‰‰ lis‰t‰‰n vaihtoehto tietokonetta vastaan pelaamiseen. T‰m‰ ei todenn‰kˆisesti toteudu

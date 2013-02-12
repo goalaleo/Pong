@@ -1,6 +1,10 @@
 - 15.1.2013 [3,5 h] 1. Deadlinen tekemiseen: GitHubin käytön opettelu ja tehtävien teko.
-- 22.1.2013 [4,0 h] Vanhojen tehtävien tekeminen kertausmielessä 
-- 25.1.2013 [2,0 h] Uusien luokkien luonti ja perusgrafiikan sekä käyttöliittymän alustus
-- 28.1.2013 [2,0 h] Luokkien jalostaminen ja testien kirjoittelu
-- 29.1.2013 [4,0h] Toiminnallisuuden lisääminen
-(Kokonaismäärä: 15,5 h)
+- 22.1.2013 [4,0 h] Vanhojen tehtävien tekeminen kertausmielessä. 
+- 25.1.2013 [2,0 h] Uusien luokkien luonti ja perusgrafiikan sekä käyttöliittymän alustus.
+- 28.1.2013 [2,0 h] Luokkien jalostaminen ja testien kirjoittelu.
+- 29.1.2013 [4,0 h] Toiminnallisuuden lisääminen.
+-  5.2.2013 [6,0 h] Luokkien välisten yhteyksien korjaaminen luokkakaaviota vastaaviksi, JUnit-testien teko ja JavaDocin aloitus.
+-  8.2.2013 [2,0 h] JavaDoc- kirjoittelu.
+- 10.2.2013 [2,0 h] JavaDoc- viimeistely
+- 12.2.2013 [6,0 h] "Magick numbereiden" poisto, sekvenssikaavioiden teko, aihemäärittelyn päivitys, Käyttöliittymän suunnittelu, uusien testien teko
+(Kokonaismäärä: 31,5 h)

@@ -13,8 +13,7 @@ import javax.swing.JPanel;
 public class Piirtoalusta extends JPanel {
 
     /**
-     * @see Grafiikka.Kayttoliittyma#pong
-     *
+     * @see Sovelluslogiikka.Pong
      */
     private Pong pong;
 
@@ -22,7 +21,7 @@ public class Piirtoalusta extends JPanel {
      * Konstruktori asettaa taustan varin mustaksi ja oliomuuttujan arvoksi
      * Pong-luokan ilmentyman.
      *
-     * @param pong Pong-luokan ilmentyma, jolta piirtoalusta kutsuu piirrettavia
+     * @param pong Kayttoliittymassa luotu Pong-luokan ilmentyma, jolta piirtoalusta kutsuu piirrettavia
      * komponentteja.
      */
     public Piirtoalusta(Pong pong) {
@@ -32,7 +31,7 @@ public class Piirtoalusta extends JPanel {
     }
 
     /**
-     * Piirtaa graafiset komponentit eli Pelaajat ja pallon ikkunaan.
+     * Piirtaa graafiset komponentit eli Pelaajat ja pallon.
      */
     @Override
     protected void paintComponent(Graphics graphics) {

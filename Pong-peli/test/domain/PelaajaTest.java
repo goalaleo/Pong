@@ -1,4 +1,4 @@
-package DomainTests;
+package domain;
 
 import domain.Pelaaja;
 import org.junit.After;

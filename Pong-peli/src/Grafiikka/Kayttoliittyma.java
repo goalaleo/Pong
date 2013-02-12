@@ -30,15 +30,11 @@ public class Kayttoliittyma implements Runnable {
      * @see Grafiikka.Kayttoliittyma#frame
      */
     private final int KORKEUS = 480;
-    /**
-     * Vastaa pelin grafiikan piirtamisesta
-     *
+    /*
      * @see Grafiikka.Piirtoalusta
      */
     private Piirtoalusta piirtoalusta;
     /**
-     * Pelin peruslogiikasta vastaava olio
-     *
      * @see Sovelluslogiikka.Pong
      */
     private Pong pong;
@@ -102,7 +98,7 @@ public class Kayttoliittyma implements Runnable {
         this.piirtoalusta = piirtoalusta;
         container.add(piirtoalusta);
 
-        frame.addKeyListener(new NappaimistonKuuntelija(pong.getPelaaja1(), pong.getPelaaja2(), pong));
+        frame.addKeyListener(new NappaimistonKuuntelija(pong.getPelaaja1(), pong.getPelaaja2()));
 
     }
 

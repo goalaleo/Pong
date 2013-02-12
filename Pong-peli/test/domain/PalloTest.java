@@ -1,4 +1,4 @@
-package DomainTests;
+package domain;
 
 import domain.Pallo;
 import static org.junit.Assert.*;
