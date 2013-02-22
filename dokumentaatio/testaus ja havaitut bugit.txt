@@ -1,0 +1,15 @@
+Testaus:
+
+Peliä on pääosin hankala testata, koska graafisia valikoita on niin paljon
+ja niillä on suhteellisen vähän toimintoja, tai ne ovat muotoa private.
+
+ Kattavasti on testattu Pong, Pallo ja Pelaaja- luokat
+
+Graafisen käyttöliittymän testaus on tehty ns. kokeilemalla eikä
+siinä pitäisi olla kummempia bugeja.
+
+Bugit:
+
+ Joskus Päävalikko- ikkuna katoaa osittain piirtoalustan alle
+(alla olevat komponentit "vuotavat" läpi).
+En saanut syytä selville.

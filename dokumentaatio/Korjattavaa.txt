@@ -1,3 +1,0 @@
-- Tee menu-ikkunat ja valikot.
-- Tee Pong-luokan private metodeista protected,
-  jotta niitä voi testata.

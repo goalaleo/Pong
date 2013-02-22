@@ -1,6 +1,7 @@
 package Sovelluslogiikka;
 
 import Grafiikka.Piirtoalusta;
+import Grafiikka.Tulostaulu;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -60,6 +61,7 @@ public class PongTest {
 
     @Test
     public void palloOnMaalissa() {
+
         pong.getPallo().setX(641);
         assertEquals(true, pong.palloMeniMaaliin());
         pong.getPallo().setX(-1);
@@ -88,7 +90,7 @@ public class PongTest {
         assertEquals(335, pong.getPallo().getX());
         assertEquals(230, pong.getPallo().getY());
 
-        pong.palautaAlkutilaan();
+        pong.palautaAlkutilaan(false);
 
         assertEquals(165, pong.getPelaaja1().getY());
         assertEquals(165, pong.getPelaaja2().getY());
@@ -137,7 +139,7 @@ public class PongTest {
         pong.getPallo().setX(-1);
         pong.palloMeniMaaliin();
         assertEquals(1, pong.getPelaaja2Pisteet());
-        pong.palautaAlkutilaan();
+        pong.palautaAlkutilaan(false);
         pong.liikutaKomponentteja();
         assertEquals(315, pong.getPallo().getX());
         assertEquals(220, pong.getPallo().getY());

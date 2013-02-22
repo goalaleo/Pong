@@ -1,13 +1,27 @@
 Aihe: Pong -peli
 
-K‰ytt‰j‰t: 1-2 Pelaajaa
+K‰ytt‰j‰t: 2 Pelaajaa
 
 
 Toteutetaan reaaliaikainen Pong -peli.
 Ohjelma mahdollistaa:
-1) Yksinpelin itsens‰ kanssa - pelaaja kontrolloi molempia alustoja samanaikaisesti.
-   Peli laskee "pompautusten" m‰‰r‰n, ja pallon liike nopeutuu koko ajan.
-   Lopussa tulos tallennetaan High Scoreihin.
-2) Kaksinpeli - kaksi k‰ytt‰j‰‰ pelaavat toisiaan vastaan esim. 10 palloa. (Pallon nopeuden s‰‰tˆ?)
-3) High Scorejen tarkastelu - k‰ytt‰j‰ tarkastelee edellisi‰ High Scoreja. High Scoret ovat mahdollistettu ainakin yksinpelille. Kaksinpelille mahdollisesti oma lista jos voittaa vastustajan ns. 10-0
-[4)] Jos aikaa ja osaamista riitt‰‰ lis‰t‰‰n vaihtoehto tietokonetta vastaan pelaamiseen. T‰m‰ ei todenn‰kˆisesti toteudu
+1) Kaksinpeli - kaksi k‰ytt‰j‰‰ pelaavat toisiaan vastaan esim. 10 palloa. 
+   Ennen pelin alkua pelaajat syˆtt‰v‰t nimens‰ ja valitsevat voittavan pistem‰‰r‰n.
+   Pelin tulos tallennetaan lopuksi pelihistoriaan (Match History) aikaleiman kanssa.
+2) Pelihistorian tarkastelu - k‰ytt‰j‰ tarkastelee edellisi‰ pelituloksia.
+
+Rakennekuvaus:
+
+ Suuri osa pelin luokista on erin‰isi‰ valikoita. Pelin varsinainen sovelluslogiikka, joka siis
+vastaa pelin loopista, sijaitsee Pong- luokassa. Pallo ja Pelaajat sisaltavat lahinna niiden
+paikkaa ja nopeutta kasittelevia attribuutteja ja metodeja.
+ Pelin eri valikoiden toiminnallisuudesta, ja nakyvyydesta maaraa ValikoidenKuuntelija- luokka,
+joka kuunteleena kayttajan syotteita, ja tekee ulkoasuun tarvittavat muutokset.
+Eri valikot ovat olemassaoloriippuvaisia ValikoidenKuuntelijasta.
+ Piirtoalustalle piirretaan pelin pelaajat ja pallo. Tulostaulu nayttaa senhetkisen pelin 
+pistetilanteen. MatchHistory vastaa pelin tuloksien tallentamisesta ja esittamisesta.
+ PelinAsetusFramen kenttiin syotetaan pelin alussa pelaajien tiedot ja voittava pistemaara.
+VirheellinenSyoteilmoitus kertoo oliko syotteessa jotain pielessa. Voittaja- luokka
+vastaa voittajan ilmoittamisesta.
+ Paavalikosta voi valita 1) uuden pelin 2) Pelihistorian tarkastelun tai 3) Ohjelman
+lopettamisen.

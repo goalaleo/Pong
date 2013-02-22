@@ -1,6 +1,8 @@
 package Sovelluslogiikka;
 
 import Grafiikka.Piirtoalusta;
+import Grafiikka.Tulostaulu;
+import Grafiikka.Voittaja;
 import domain.Pallo;
 import domain.Pelaaja;
 
@@ -13,60 +15,6 @@ import domain.Pelaaja;
  */
 public class Pong implements Runnable {
 
-    /**
-     * @see Grafiikka.Piirtoalusta
-     */
-    private Piirtoalusta piirtoalusta;
-    /**
-     * Pelin nopeuden kertova suure. Komponentteja liikutetaan jokaisessa
-     * run()-metodin loopissa nopeuden kertovan pikselimaaran. Kaikkien
-     * komponenttien liike siis nopeutuu pelin edetessa.
-     *
-     */
-    private int nopeus;
-    /**
-     * @see domain.Pallo
-     */
-    private Pallo pallo;
-    /**
-     * Vasemmanpuoleinen pelaaja
-     *
-     * @see domain.Pelaaja
-     */
-    private Pelaaja pelaaja1;
-    /**
-     * Oikeanpuoleinen pelaaja
-     *
-     * @see domain.Pelaaja
-     */
-    private Pelaaja pelaaja2;
-    /**
-     * Muuttuja laskee pallon osumia pelaajiin, ja pelin nopeutta saadetaan sen
-     * mukaan. Muuttujalle annetaan konstruktorissa arvo 0 ja se kasvaa aina
-     * yhdella, kun metodi palloTormaaPelaajaan() palauttaa true. Metodi
-     * nopeutetaankoPelia() nopeuttaa pelia aina kun pallo on osunut 5 kertaa
-     * pelaajiin.
-     *
-     * @see Sovelluslogiikka.Pong#palloTormaaPelaajaan()
-     * @see Sovelluslogiikka.Pong#nopeutetaankoPelia()
-     */
-    private int pallonOsumatPelaajiin;
-    /**
-     * Pelaajan 1 pistemaara
-     */
-    private int pelaajan1Pisteet;
-    /**
-     * Pelaajan 2 pistemaara
-     */
-    private int pelaajan2Pisteet;
-    /**
-     * Nopeutustahtia voi saataa vaikeustason lisaamiseksi
-     */
-    private int pelinNopeutusTahti;
-    /**
-     * Auttaa nopeuden lisaamisessa
-     */
-    private int nopeudenOsumalaskuri;
     /**
      * Pelin ylaraja
      */
@@ -115,6 +63,89 @@ public class Pong implements Runnable {
      * Pallon sade
      */
     private final int PALLON_SADE = 20;
+    /**
+     * @see Grafiikka.Piirtoalusta
+     */
+    private Piirtoalusta piirtoalusta;
+    /**
+     * Pelin nopeuden kertova suure. Komponentteja liikutetaan jokaisessa
+     * run()-metodin loopissa nopeuden kertovan pikselimaaran. Kaikkien
+     * komponenttien liike siis nopeutuu pelin edetessa.
+     *
+     */
+    private int nopeus;
+    /**
+     * @see domain.Pallo
+     */
+    private Pallo pallo;
+    /**
+     * Vasemmanpuoleinen pelaaja
+     *
+     * @see domain.Pelaaja
+     */
+    private Pelaaja pelaaja1;
+    /**
+     * Oikeanpuoleinen pelaaja
+     *
+     * @see domain.Pelaaja
+     */
+    private Pelaaja pelaaja2;
+    /**
+     * Pelaajan 1 pistemaara
+     */
+    private int pelaajan1Pisteet;
+    /**
+     * Pelaajan 2 pistemaara
+     */
+    private int pelaajan2Pisteet;
+    /**
+     * Pelin alussa syotetty nimi
+     */
+    private String pelaajan1Nimi;
+    /**
+     * Pelin alussa syotetty nimi
+     */
+    private String pelaajan2Nimi;
+    /**
+     * Voittava maalimaara
+     */
+    private int mihinPelataan;
+    /**
+     * Muuttuja laskee pallon osumia pelaajiin, ja pelin nopeutta saadetaan sen
+     * mukaan. Muuttujalle annetaan konstruktorissa arvo 0 ja se kasvaa aina
+     * yhdella, kun metodi palloTormaaPelaajaan() palauttaa true. Metodi
+     * nopeutetaankoPelia() nopeuttaa pelia aina kun pallo on osunut 5 kertaa
+     * pelaajiin.
+     *
+     * @see Sovelluslogiikka.Pong#palloTormaaPelaajaan()
+     * @see Sovelluslogiikka.Pong#nopeutetaankoPelia()
+     */
+    private int pallonOsumatPelaajiin;
+    /**
+     * Nopeutustahtia voi saataa vaikeustason lisaamiseksi
+     */
+    private int pelinNopeutusTahti;
+    /**
+     * Auttaa nopeuden lisaamisessa
+     */
+    private int nopeudenOsumalaskuri;
+    /**
+     * Tulostaulu jota Pong paivittaa
+     */
+    private Tulostaulu tulostaulu;
+    /**
+     * Boolean jatketaan maarittaa pidetaanko lankaa ylla. Kun jatketaan =
+     * false, niin run()-metodin loopin suoritus lopetetaan.
+     */
+    private boolean jatketaan;
+    /**
+     * Pelihistoriasta vastaava luokka
+     */
+    private MatchHistory peliHistoria;
+    /**
+     * Ponnahdusikkuna, joka kertoo kuka voitti pelin
+     */
+    private Voittaja voittajaFrame;
 
     /**
      * Konstruktorissa luodaan pelin pallo ja pelaajat. Konstruktori on
@@ -150,6 +181,7 @@ public class Pong implements Runnable {
      * metodien omissa JavaDoc kuvauksissa.
      *
      * @see Sovelluslogiikka.Pong#palloMeniMaaliin()
+     * @see Grafiikka.Tulostaulu#paivitaPisteet()
      * @see Sovelluslogiikka.Pong#palautaAlkutilaan()
      * @see Sovelluslogiikka.Pong#liikutaKomponentteja()
      * @see Grafiikka.Piirtoalusta#repaint()
@@ -158,19 +190,29 @@ public class Pong implements Runnable {
      */
     @Override
     public void run() {
-
+        this.jatketaan = true;
         odota(2000);
-
-        while (true) {
+        
+        while (jatketaan) {
+            
+            
+            
             if (palloMeniMaaliin()) {
-                palautaAlkutilaan();
+                tulostaulu.paivitaPisteet();
+                palautaAlkutilaan(true);
+                
+                if (paattyikoPeli()) {
+                    ilmoitaVoittaja();
+                    break;
+                }
+                
             }
-
+            
             liikutaKomponentteja();
-
+            
             piirtoalusta.repaint();
             odota(1000 / 60);
-
+            
             nopeutetaankoPelia();
         }
     }
@@ -218,7 +260,7 @@ public class Pong implements Runnable {
             pelaaja1.siirry();
             pelaaja2.siirry();
             pallo.siirry();
-
+            
         }
     }
 
@@ -257,29 +299,45 @@ public class Pong implements Runnable {
         }
         return false;
     }
-
+    
     public Pallo getPallo() {
         return pallo;
     }
-
+    
     public Pelaaja getPelaaja1() {
         return pelaaja1;
     }
-
+    
     public Pelaaja getPelaaja2() {
         return pelaaja2;
     }
-
+    
     public int getNopeus() {
         return nopeus;
     }
-
+    
     public int getPelaaja1Pisteet() {
         return pelaajan1Pisteet;
     }
-
+    
     public int getPelaaja2Pisteet() {
         return pelaajan2Pisteet;
+    }
+    
+    public String getPelaaja1Nimi() {
+        return pelaajan1Nimi;
+    }
+    
+    public String getPelaaja2Nimi() {
+        return pelaajan2Nimi;
+    }
+    
+    public int getMihinPelataan() {
+        return mihinPelataan;
+    }
+    
+    public Piirtoalusta getPiirtoalusta() {
+        return piirtoalusta;
     }
 
     /**
@@ -290,6 +348,25 @@ public class Pong implements Runnable {
      */
     public void setPiirtoalusta(Piirtoalusta piirtoalusta) {
         this.piirtoalusta = piirtoalusta;
+    }
+    
+    public void setPelaajan1Nimi(String nimi) {
+        this.pelaajan1Nimi = nimi;
+    }
+    
+    public void setPelaajan2Nimi(String nimi) {
+        this.pelaajan2Nimi = nimi;
+    }
+    
+    public void setMihinPelataan(int mihinPelataan) {
+        this.mihinPelataan = mihinPelataan;
+    }
+    /**
+     * Asettaa pelille pelihistorian, johon se kirjoittaa lopputuloksen
+     * @param peliHistoria pelien tuloksista vastaavan luokan ilmentyma
+     */
+    public void setPeliHistoria(MatchHistory peliHistoria) {
+        this.peliHistoria = peliHistoria;
     }
 
     /**
@@ -320,19 +397,22 @@ public class Pong implements Runnable {
      * vaihdaPallonAlkusuuntaa()- metodilla.
      *
      * Metodin lopuksi, kun piirtoalusta on paivitetty (komponentit
-     * alkupaikoilla), pysaytetaan lanka taas 2 sekunniksi, jotta pelaajat
-     * ehtivat orientoitua uuteen palloon.
+     * alkupaikoilla), pysaytetaan lanka taas 2 sekunniksi mikali parametri on
+     * true, jotta pelaajat ehtivat orientoitua uuteen palloon.
      *
      * @see Sovelluslogiikka.Pong#vaihdaPallonAlkusuuntaa()
+     * @param viiveella Maarittaa pidetaanko metodin lopuksi tauko. Pelin
+     * keskeytys palauttaa myos pelin alkutilaan, mutta parametri on false,
+     * jotta Paavalikkoon palaaminen tapahtuu viiveetta.
      */
-    protected void palautaAlkutilaan() {
+    protected void palautaAlkutilaan(Boolean viiveella) {
         this.nopeus = 5;
         this.nopeudenOsumalaskuri = 0;
         pallo.setX(PALLO_ALKUX);
         pallo.setY(PALLO_ALKUY);
-
+        
         vaihdaPallonAlkusuuntaa();
-
+        
         pelaaja1.setPaikkaX(
                 PELAAJA1_X);
         pelaaja1.setPaikkaY(
@@ -341,32 +421,34 @@ public class Pong implements Runnable {
                 PELAAJA2_X);
         pelaaja2.setPaikkaY(
                 PELAAJIEN_ALKUY);
-
+        
         piirtoalusta.repaint();
-
+        
         System.out.println(
                 "1. :" + pelaajan1Pisteet + ", " + "2. :" + pelaajan2Pisteet);
-        odota(
-                2000);
+        if (viiveella) {
+            odota(
+                    2000);
+        }
     }
 
     /**
      * Pelia nopeutetaan, mikali edellisesta nopeutuksesta on tapahtunut 5
      * pallon tormaysta pelaajiin.
      *
-     * Metodi tarkistaa oliomuuttujan 'pallonOsumatPelaajiin' (jota kasvattaa
-     * metodi palloTormaaPelaajaan()) arvon. Mikali se on 5, kasvatetaan
-     * oliomuuttujan 'nopeus' arvoa yhdella, ja nollataan
-     * 'pallonOsumatPelaajiin'.
+     * Metodi tarkistaa oliomuuttujan 'nopeudenOsumalaskuri' (jota kasvattaa
+     * metodi palloTormaaPelaajaan()) arvon. Mikali sen ja oliomuuttujan
+     * pelinNopeutusTahti jakojaannos on nolla, kasvatetaan oliomuuttujan
+     * 'nopeus' arvoa yhdella, ja nollataan 'nopeudenOsumaLaskuri'.
      *
      * @see Sovelluslogiikka.Pong#palloTormaaPelaajaan()
-     * @see Sovelluslogiikka.Pong#pallonOsumatPelaajiin
+     * @see Sovelluslogiikka.Pong#nopeudenOsumalaskuri
      * @see Sovelluslogiikka.Pong#nopeus
      */
     protected void nopeutetaankoPelia() {
         if (nopeudenOsumalaskuri % pelinNopeutusTahti == 0 && nopeudenOsumalaskuri != 0) {
             nopeus++;
-            ;
+            nopeudenOsumalaskuri = 0;
         }
     }
 
@@ -396,7 +478,7 @@ public class Pong implements Runnable {
     private void vaihdaPallonAlkusuuntaa() {
         pallo.setNopeusX(nopeus);
         pallo.setNopeusY(nopeus);
-
+        
         if (((pelaajan1Pisteet + pelaajan2Pisteet) % 2 == 0) && ((pelaajan1Pisteet + pelaajan2Pisteet) % 4 != 0)) {
             pallo.setNopeusY(-nopeus);
         } else if (((pelaajan1Pisteet + pelaajan2Pisteet) == 3) || ((pelaajan1Pisteet + pelaajan2Pisteet) % 4 == 3)) {
@@ -404,12 +486,97 @@ public class Pong implements Runnable {
         } else if ((pelaajan1Pisteet + pelaajan2Pisteet) % 4 == 0) {
             pallo.setNopeusY(nopeus);
         }
-
-
+        
+        
         if ((pelaajan1Pisteet + pelaajan2Pisteet) % 2 != 0) {
             pallo.setNopeusX(-nopeus);
         } else {
             pallo.setNopeusX(nopeus);
         }
+    }
+
+    /**
+     * Asettaa pelille tulostaulun, jota pong paivittaa.
+     *
+     * @param tulostaulu Kayttoliittymassa luotu tulostaulu.
+     */
+    public void setTulostaulu(Tulostaulu tulostaulu) {
+        this.tulostaulu = tulostaulu;
+    }
+
+    /**
+     * Katkaisee run()-metodin while()-loopin.
+     */
+    protected void stop() {
+        jatketaan = false;
+    }
+
+    /**
+     * Nollaa pisteet ja pallonOsumatPelaajiin uutta pelia varten.
+     */
+    protected void nollaaPisteet() {
+        pelaajan1Pisteet = 0;
+        pelaajan2Pisteet = 0;
+        pallonOsumatPelaajiin = 0;
+    }
+
+    /**
+     * Nollaa pelin tilanteen
+     */
+    protected void nollaaPongPeli() {
+        palautaAlkutilaan(false);
+        piirtoalusta.repaint();
+        pallo.setNopeusX(nopeus);
+        pallo.setNopeusY(nopeus);
+        nollaaPisteet();
+    }
+    /**
+     * Tarkistaa onko jommallakummalla pelaajalla voittava pistemaara ja kaskee
+     * tuloksen kirjaamisen pelihistoriaan
+     * @return true, jos voittaja on loytynyt - false, jos peli jatkuu viela
+     */
+    private boolean paattyikoPeli() {
+        String voittaja;
+        String haviaja;
+        int voittajanPisteet;
+        int haviajanPisteet;
+        
+        if (pelaajan1Pisteet == mihinPelataan || pelaajan2Pisteet == mihinPelataan) {
+            jatketaan = false;
+            if (pelaajan1Pisteet > pelaajan2Pisteet) {
+                voittaja = pelaajan1Nimi;
+                haviaja = pelaajan2Nimi;
+                voittajanPisteet = pelaajan1Pisteet;
+                haviajanPisteet = pelaajan2Pisteet;
+            } else {
+                voittaja = pelaajan2Nimi;
+                haviaja = pelaajan1Nimi;
+                voittajanPisteet = pelaajan2Pisteet;
+                haviajanPisteet = pelaajan1Pisteet;
+            }
+            peliHistoria.kirjaaTulos(voittaja, haviaja, voittajanPisteet, haviajanPisteet);
+            nollaaPongPeli();
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Asettaa pongille voittaja-framen, jonka pong kutsuu esille voittajan selvittya
+     * @param voittajaFrame 
+     */
+    public void setVoittajaFrame(Voittaja voittajaFrame) {
+        this.voittajaFrame = voittajaFrame;
+    }
+    /**
+     * Maaraa voittotaulun tekstin, ja kaskee sen nayttamisen.
+     */
+    private void ilmoitaVoittaja() {
+        if (pelaajan1Pisteet > pelaajan2Pisteet) {
+            voittajaFrame.setVoittoteksti(pelaajan1Nimi);
+        } else {
+            voittajaFrame.setVoittoteksti(pelaajan2Nimi);
+        }
+        tulostaulu.setVisible(false);
+        voittajaFrame.setVisible(true);
     }
 }

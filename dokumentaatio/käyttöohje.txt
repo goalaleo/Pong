@@ -1,0 +1,16 @@
+Pong- pelin Käyttöohje:
+
+ Ohjelmaa on helppo käyttää.
+
+Näppäimet E ja D liikuttavat vasemmanpuoleista pelaajaa ylös ja alas.
+Nuolinäppäimet nuoliylös ja -alas liikuttavat oikeanpuoleista pelaajaa ylös ja alas.
+
+Jos painat New Game, pyytää ohjelma sinua syöttämään pelaajien tiedot.
+Nimien pituuksien tulee olla 1-10 kirjainta/numeroa ja Winning Scoren 1-20.
+Jos sitten painat Play niin peli käynnistyy.
+Jos painat Back to Menu keskeytyy peli ja päädyt takaisin päävalikkoon.
+HUOM! Peliä ei voi enää jatkaa samasta tilanteesta.
+Jos painat päävalikossa Match History, esittää ohjelma sinulle viimeisimpien pelien tulokset.
+Jos painat Quit tai klikkaat ohjelman yläkulmassa olevaa ruksia, niin ohjelma sulkeutuu.
+
+ Peli-iloa!

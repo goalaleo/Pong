@@ -7,4 +7,7 @@
 -  8.2.2013 [2,0 h] JavaDoc- kirjoittelu.
 - 10.2.2013 [2,0 h] JavaDoc- viimeistely
 - 12.2.2013 [6,0 h] "Magick numbereiden" poisto, sekvenssikaavioiden teko, aihem‰‰rittelyn p‰ivitys, K‰yttˆliittym‰n suunnittelu, uusien testien teko
-(Kokonaism‰‰r‰: 31,5 h)
+- 20.2.2013 [4,0 h] Kayttoliittyman luontia.
+- 21.2.2013 [6,0 h] Kayttoliittyman viimeistelya.
+- 22.2.2013 [10,0h] Kayttoliittyman ja ohjelman dokumentaation viimeistelua. Match History toimimaan.
+(Kokonaism‰‰r‰: 51,5 h)

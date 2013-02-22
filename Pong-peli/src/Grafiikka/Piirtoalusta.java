@@ -21,8 +21,8 @@ public class Piirtoalusta extends JPanel {
      * Konstruktori asettaa taustan varin mustaksi ja oliomuuttujan arvoksi
      * Pong-luokan ilmentyman.
      *
-     * @param pong Kayttoliittymassa luotu Pong-luokan ilmentyma, jolta piirtoalusta kutsuu piirrettavia
-     * komponentteja.
+     * @param pong Kayttoliittymassa luotu Pong-luokan ilmentyma, jolta
+     * piirtoalusta kutsuu piirrettavia komponentteja.
      */
     public Piirtoalusta(Pong pong) {
         super.setBackground(Color.BLACK);
